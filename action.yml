@@ -1,4 +1,4 @@
-name: 'Notation'
+name: 'Notary Sign Action'
 description: 'Uses the Notary cli tool notation to remotely sign container images hosted on Azure Container Registry'
 inputs:
   certificate-name:
