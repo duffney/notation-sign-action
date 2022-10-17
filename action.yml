@@ -1,37 +1,10 @@
 name: 'Notary Sign Action'
-description: 'Uses the Notary cli tool notation to remotely sign container images hosted on Azure Container Registry'
+description: 'Uses the Notation CLI to remotely sign container images hosted on a OCI compliant container registry'
 inputs:
-  certificate-name:
-    description: 'Name of the signing certificate'
-    required: true
-  key-identifier:
-    description: 'kid of the signing certificate'
-  certificate-identifer:
-    description: 'id of the signing certificate'
   image-name:
     description: 'Name of the container image to be signed'
 runs:
   using: "composite"
   steps:
-    - name: Install notation
-      run: |
-        curl -Lo notation.tar.gz https://github.com/notaryproject/notation/releases/download/feat-kv-extensibility/notation-feat-kv-extensibility-20220121081115-17c7607.tar.gz > /dev/null 2>&1;\
-        tar xvzf notation.tar.gz > /dev/null 2>&1;\
-        tar xvzf notation_0.0.0-SNAPSHOT-17c7607_linux_amd64.tar.gz -C /usr/local/bin notation > /dev/null 2>&1;\
-      shell: bash
-    - name: Install azure keyvault plugin
-      run: |
-        [ -d ~/.config/notation/plugins/azure-kv ] || mkdir -p ~/.config/notation/plugins/azure-kv;\
-        curl -Lo notation-azure-kv.tar.gz https://github.com/Azure/notation-azure-kv/releases/download/v0.1.0-alpha.1/notation-azure-kv_0.1.0-alpha.1_linux_amd64.tar.gz;\
-        tar xvzf notation-azure-kv.tar.gz -C ~/.config/notation/plugins/azure-kv notation-azure-kv > /dev/null 2>&1 ;\
-        notation plugin add azure-kv ~/.config/notation/plugins/azure-kv/notation-azure-kv ;\
-        rm -rf notation-azure-kv.tar.gz
-      shell: bash
-    - name: Add signing certificate
-      run: |
-        notation key add --name ${{ inputs.certificate-name }} --plugin azure-kv --id ${{ inputs.key-identifier }} --kms > /dev/null 2>&1;\
-        notation cert add --name ${{ inputs.certificate-name }} --plugin azure-kv --id ${{ inputs.certificate-identifer }} --kms > /dev/null 2>&1;\
-      shell: bash
-    - name: Sign container image
-      run: notation sign --key ${{ inputs.certificate-name }} ${{ inputs.image-name }} && echo "Image successfullly signed using ${{ inputs.certificate-name }} certificate"
+    - run: notation sign '${{ inputs.image-name }}'
       shell: bash
