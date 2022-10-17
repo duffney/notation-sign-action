@@ -3,6 +3,7 @@ description: 'Uses the Notation CLI to remotely sign container images hosted on 
 inputs:
   image-name:
     description: 'Name of the container image to be signed'
+    required: true
 runs:
   using: "composite"
   steps:
