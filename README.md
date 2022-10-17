@@ -1,9 +1,6 @@
 # Notary Sign Action
 A GitHub action for digitally signing container images hosted on an OCI-conformant registry with [Notary](https://github.com/notaryproject/notary).
 
-> **IMPORTANT**
-> The Notary Sign Action assumes the Notation CLI is installed. To add the Notation CLI to your runner, use the [setup-notation](https://github.com/Duffney/setup-notation) action.
-
 ## Usage
 
 Sign an image:
@@ -74,6 +71,9 @@ jobs:
 | Name     | type     | description                                     | required | default                  |
 | -------- | -------- | ----------------------------------------------- | -------- | ------------------------ |
 | image-name | string   | The full name of the container image (registry/image-name:tag)| true    |  |
+
+> **IMPORTANT**
+> The Notary Sign Action assumes the Notation CLI is installed. To add the Notation CLI to your runner, use the [setup-notation](https://github.com/Duffney/setup-notation) action.
 
 
 ## Required Environment Variables
