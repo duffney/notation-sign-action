@@ -2,10 +2,17 @@ name: 'Notary Sign Action'
 description: 'Uses the Notation CLI to remotely sign container images hosted on a OCI compliant container registry'
 inputs:
   image-name:
-    description: 'Name of the container image to be signed'
+    description: Name of the container image to be signed
     required: true
+  args:
+    description: Arugments passed to the notation sign command
 runs:
   using: "composite"
   steps:
-    - run: notation sign '${{ inputs.image-name }}'
+    - run: |
+        if [[ -z "${{ inputs.args }}" ]]; then
+                echo "notation sign ${{ inputs.image-name }}"
+        else
+                echo "notation sign ${{ inputs.args }} ${{ inputs.image-name }}"
+        fi
       shell: bash
