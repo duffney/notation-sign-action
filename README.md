@@ -21,6 +21,25 @@ jobs:
           image-name: 'registry/image:tag'
 ```
 
+Pass an argument:
+
+```yml
+name: ci
+
+on: [push]
+
+jobs:
+  sign_container_image:
+    runs-on: ubuntu-latest
+    name: Notation sign container image
+    steps:
+      - uses: notary-sign-action@v0.1.0
+      - name: Sign container image
+        with:
+          image-name: 'registry/image:tag'
+          args: --envelope-type cose
+```
+
 Sign an image with a password protected registry:
 
 ```yml
