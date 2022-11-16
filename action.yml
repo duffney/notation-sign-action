@@ -1,11 +1,18 @@
-name: 'Notary Sign Action'
-description: 'Uses the Notation CLI to remotely sign container images hosted on a OCI compliant container registry'
+name: 'Hello World'
+description: 'Greet someone and record the time'
 inputs:
   image-name:
-    description: 'Name of the container image to be signed'
+    description: 'Name of the container image'
     required: true
+  envolope-type:
+    description: 'testing'
+    required: false
+  media-type:
+    description: 'testing'
+    required: false
+outputs:
+  cmd-string:
+    description: 'cmd string result of builder'
 runs:
-  using: "composite"
-  steps:
-    - run: notation sign '${{ inputs.image-name }}'
-      shell: bash
+  using: 'node16'
+  main: 'dist/index.js'
