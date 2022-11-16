@@ -13,7 +13,7 @@ try {
     array.push(cmd)
 
     if (envelopeType != null) {
-        array.push("--envolopetype "+envelopeType)
+        array.push("--envolope-type "+envelopeType)
     }
     if (mediaType != null) {
         array.push("--media-type "+mediaType)
