@@ -2696,6 +2696,14 @@ module.exports = require("assert");
 
 /***/ }),
 
+/***/ 81:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("child_process");
+
+/***/ }),
+
 /***/ 113:
 /***/ ((module) => {
 
@@ -2818,6 +2826,7 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const core = __nccwpck_require__(129);
+const execSync = (__nccwpck_require__(81).execSync);
 //const github = require('@actions/github');
 
 try {
