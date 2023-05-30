@@ -1,4 +1,4 @@
-# Notary Sign Action
+# Notation Sign Action
 A GitHub action for digitally signing container images hosted on an OCI-conformant registry with [Notary](https://github.com/notaryproject/notary).
 
 ## Usage
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Notation sign container image
     steps:
-      - uses: notary-sign-action@v0.1.0
+      - uses: notation-sign-action@v0.1.0
       - name: Sign container image
         with:
           image-name: 'registry/image:tag'
@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Notation sign container image
     steps:
-      - uses: notary-sign-action@v0.1.0
+      - uses: notation-sign-action@v0.1.0
       - name: Sign container image
         with:
           image-name: 'registry/image:tag'
@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Notation sign container image
     steps:
-      - uses: notary-sign-action@v0.1.0
+      - uses: notation-sign-action@v0.1.0
       - name: Sign container image
         env:
           NOTATION_USERNAME: ${{ secrets.NOTATION_USERNAME }}
@@ -73,7 +73,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Notation sign container image
     steps:
-      - uses: notary-sign-action@v0.1.0
+      - uses: notation-sign-action@v0.1.0
       - name: Sign container image
         env:
           AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
@@ -92,7 +92,7 @@ jobs:
 | image-name | string   | The full name of the container image (registry/image-name:tag)| true    |  |
 
 > **IMPORTANT**
-> The Notary Sign Action assumes the Notation CLI is installed. To add the Notation CLI to your runner, use the [setup-notation](https://github.com/Duffney/setup-notation) action.
+> The Notation Sign Action assumes the Notation CLI is installed. To add the Notation CLI to your runner, use the [setup-notation](https://github.com/Duffney/setup-notation) action.
 
 
 ## Required Environment Variables
