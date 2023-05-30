@@ -1,4 +1,4 @@
-name: 'Notary Sign Action'
+name: 'Notation Sign Action'
 description: 'Uses the Notation CLI to remotely sign container images hosted on a OCI compliant container registry'
 inputs:
   image-name:
